@@ -6,6 +6,6 @@ Username/Password is the the username/password that you get in the e-mail from U
 
 ```go
 var usps USPS
-	usps.Username = ""
-	usps.Password = ""
+usps.Username = ""
+usps.Password = ""
 ```

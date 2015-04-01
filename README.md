@@ -2,7 +2,17 @@
 
 A wrapper ontop of the USPS API.
 
-Username/Password is the the username/password that you get in the e-mail from USPS when you sign up for their API.
+Username/Password is the the username/password that you get in the e-mail from USPS when you sign up for their API. Download it using
+
+``go get github.com/aureum/usps-go```
+
+Import it into your project
+
+```go
+package main
+
+import "github.com/aureum/usps-go"
+```
 
 ```go
 var usps USPS

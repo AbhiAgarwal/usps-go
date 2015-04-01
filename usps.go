@@ -1,7 +1,7 @@
 package usps
 
 const (
-	base string = "http://production.shippingapis.com"
+	base string = "http://production.shippingapis.com/ShippingAPITest.dll?API="
 )
 
 type USPS struct {

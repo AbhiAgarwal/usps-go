@@ -4,20 +4,8 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"strings"
 )
-
-type AddressValidateResponse struct {
-	Address struct {
-		Address2 string `xml:"Address2"`
-		City     string `xml:"City"`
-		State    string `xml:"State"`
-		Zip5     string `xml:"Zip5"`
-		Zip4     string `xml:"Zip4"`
-	} `xml:"Address"`
-}
 
 type Address struct {
 	Address1 string
@@ -28,28 +16,122 @@ type Address struct {
 	Zip4     string
 }
 
+type ZipCode struct {
+	Zip5 string
+}
+
+type AddressValidateResponse struct {
+	Address struct {
+		Address1 string `xml:"Address1"`
+		Address2 string `xml:"Address2"`
+		City     string `xml:"City"`
+		State    string `xml:"State"`
+		Zip5     string `xml:"Zip5"`
+		Zip4     string `xml:"Zip4"`
+	} `xml:"Address"`
+}
+
+type ZipCodeLookupResponse struct {
+	Address struct {
+		Address1 string `xml:"Address1"`
+		Address2 string `xml:"Address2"`
+		City     string `xml:"City"`
+		State    string `xml:"State"`
+		Zip5     string `xml:"Zip5"`
+		Zip4     string `xml:"Zip4"`
+	} `xml:"Address"`
+}
+
+type CityStateLookupResponse struct {
+	ZipC struct {
+		Zip5  string `xml:"Zip5"`
+		City  string `xml:"City"`
+		State string `xml:"State"`
+	} `xml:"ZipCode"`
+}
+
 func (U *USPS) AddressVerification(address Address) AddressValidateResponse {
-	xmlOut, err := xml.Marshal(address)
 	result := AddressValidateResponse{}
+
+	xmlOut, err := xml.Marshal(address)
 	if err != nil {
 		fmt.Println(err)
 		return result
 	}
+
 	var requestURL bytes.Buffer
-	requestURL.WriteString("/ShippingAPITest.dll?API=Verify&XML=")
+	requestURL.WriteString("Verify&XML=")
 	urlToEncode := "<AddressValidateRequest USERID=\"" + U.Username + "\">"
 	urlToEncode += string(xmlOut)
 	urlToEncode += "</AddressValidateRequest>"
 	requestURL.WriteString(URLEncode(urlToEncode))
 
-	currentURL := base + requestURL.String()
-	resp, err := http.Get(currentURL)
+	body := GetRequest(requestURL.String())
+	if body == nil {
+		return result
+	}
+
+	bodyHeaderless := strings.Replace(string(body), xml.Header, "", 1)
+	err = xml.Unmarshal([]byte(bodyHeaderless), &result)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+		return result
+	}
+
+	return result
+}
+
+func (U *USPS) ZipCodeLookup(address Address) ZipCodeLookupResponse {
+	result := ZipCodeLookupResponse{}
+
+	xmlOut, err := xml.Marshal(address)
 	if err != nil {
 		fmt.Println(err)
 		return result
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+
+	var requestURL bytes.Buffer
+	requestURL.WriteString("ZipCodeLookup&XML=")
+	urlToEncode := "<ZipCodeLookupRequest USERID=\"" + U.Username + "\">"
+	urlToEncode += string(xmlOut)
+	urlToEncode += "</ZipCodeLookupRequest>"
+	requestURL.WriteString(URLEncode(urlToEncode))
+
+	body := GetRequest(requestURL.String())
+	if body == nil {
+		return result
+	}
+
+	bodyHeaderless := strings.Replace(string(body), xml.Header, "", 1)
+	err = xml.Unmarshal([]byte(bodyHeaderless), &result)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+		return result
+	}
+
+	return result
+}
+
+func (U *USPS) CityStateLookup(zipcode ZipCode) CityStateLookupResponse {
+	result := CityStateLookupResponse{}
+
+	xmlOut, err := xml.Marshal(zipcode)
+	if err != nil {
+		fmt.Println(err)
+		return result
+	}
+
+	var requestURL bytes.Buffer
+	requestURL.WriteString("CityStateLookup&XML=")
+	urlToEncode := "<CityStateLookupRequest USERID=\"" + U.Username + "\">"
+	urlToEncode += string(xmlOut)
+	urlToEncode += "</CityStateLookupRequest>"
+	requestURL.WriteString(URLEncode(urlToEncode))
+
+	body := GetRequest(requestURL.String())
+	if body == nil {
+		return result
+	}
 
 	bodyHeaderless := strings.Replace(string(body), xml.Header, "", 1)
 	err = xml.Unmarshal([]byte(bodyHeaderless), &result)

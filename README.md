@@ -4,7 +4,7 @@ A wrapper ontop of the USPS API.
 
 Download it using
 
-``go get github.com/aureum/usps-go```
+``go get github.com/aureum/usps-go``
 
 Import it into your project
 

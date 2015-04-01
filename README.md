@@ -1,5 +1,7 @@
 # usps-go
 
+[![GoDoc](https://godoc.org/github.com/aureum/usps-go?status.svg)](https://godoc.org/github.com/aureum/usps-go)
+
 A wrapper ontop of the USPS API.
 
 Download it using

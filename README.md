@@ -28,6 +28,8 @@ usps.Password = ""
 
 The descriptions are from [here](https://www.usps.com/business/web-tools-apis/address-information.htm).
 
+The access level for this API doesn't require a password, but only requires a username to be set.
+
 #### Address Standardization/Verification
 
 Save time and money by reducing shipping errors due to improper address entry. This tool corrects errors in street addresses, including abbreviations and missing information. It also supplies a ZIP+4 Code.
@@ -35,7 +37,6 @@ Save time and money by reducing shipping errors due to improper address entry. T
 ```go
 var usps USPS
 usps.Username = ""
-usps.Password = ""
 
 var address Address
 address.Address2 = "6406 Ivy Lane"
@@ -52,7 +53,6 @@ Never get another ZIP Code wrong again with the ZIP Code Lookup tool. Find match
 ```go
 var usps USPS
 usps.Username = ""
-usps.Password = ""
 
 var address Address
 address.Address2 = "6406 Ivy Lane"
@@ -69,10 +69,26 @@ Don’t waste time searching for a city or state; use a ZIP Code to get accurate
 ```go
 var usps USPS
 usps.Username = ""
-usps.Password = ""
 
 var address ZipCode
 address.Zip5 = "90210"
 
 output := usps.CityStateLookup(address)
+```
+
+### Tracking & Delivery Information APIs
+
+The descriptions are from [here](https://www.usps.com/business/web-tools-apis/delivery-information.htm).
+
+The access level for this API doesn't require a password, but only requires a username to be set.
+
+#### Track & Confirm
+
+Track any package shipped via Priority Mail Express, Global Express Guaranteed, or Priority Mail Express International services. Check the tracking information for packages shipped with USPS Tracking, Signature Confirmation, Certified Mail, or Registered Mail™ services.
+
+```go
+var usps USPS
+usps.Username = ""
+
+output := usps.TrackPackage("")
 ```

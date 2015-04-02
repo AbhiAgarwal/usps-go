@@ -1,6 +1,7 @@
 # usps-go
 
 [![GoDoc](https://godoc.org/github.com/aureum/usps-go?status.svg)](https://godoc.org/github.com/aureum/usps-go)
+[![Circle CI](https://circleci.com/gh/aureum/usps-go/tree/master.svg?style=svg)](https://circleci.com/gh/aureum/usps-go/tree/master)
 
 A wrapper ontop of the USPS API.
 
@@ -96,6 +97,7 @@ usps.Username = ""
 
 output := usps.TrackPackage("")
 ```
+<<<<<<< HEAD
 
 ### Package Pickup
 
@@ -177,3 +179,5 @@ Get estimates on delivery standards between 3-digit ZIP Codes™ for Standard Po
 
 #### Package Services Service Standards
 
+=======
+>>>>>>> 4e3fa84f87b7fa6de07227238f0c42efa31eaede

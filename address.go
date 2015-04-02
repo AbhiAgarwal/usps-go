@@ -8,16 +8,16 @@ import (
 )
 
 type Address struct {
-	Address1 string
-	Address2 string
-	City     string
-	State    string
-	Zip5     string
-	Zip4     string
+	Address1 string `xml:"Address1"`
+	Address2 string `xml:"Address2"`
+	City     string `xml:"City"`
+	State    string `xml:"State"`
+	Zip5     string `xml:"Zip5"`
+	Zip4     string `xml:"Zip4"`
 }
 
 type ZipCode struct {
-	Zip5 string
+	Zip5 string `xml:"Zip5"`
 }
 
 type AddressValidateResponse struct {

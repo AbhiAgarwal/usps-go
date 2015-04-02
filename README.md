@@ -108,6 +108,31 @@ The access level for this API doesn't require a password, but only requires a us
 
 Check the availability for Package Pickup at a specific address, Schedule a Pickup, and get first available date for pickup. Package Pickup is not available for all addresses. Available for Priority Mail Express™, Priority Mail®, International, and returns packages. Package Pickup is not available for all addresses.
 
+##### Package Pickup Availability
+
+```go
+var usps USPS
+usps.Username = ""
+
+var pickup PickUp
+pickup.FirmName = "ABC Corp."
+pickup.SuiteOrApt = "Suite 777"
+pickup.Address2 = "1390 Market Street"
+pickup.Urbanization = ""
+pickup.City = "Houston"
+pickup.State = "TX"
+pickup.ZIP5 = "77058"
+pickup.ZIP4 = "1234"
+
+output := usps.PickupAvailability(pickup)
+```
+
+##### Package Pickup Change
+
+##### Package Pickup Inquiry
+
+##### 
+
 ## Coming soon
 
 ### Price Calculator

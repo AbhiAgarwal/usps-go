@@ -114,7 +114,7 @@ Check the availability for Package Pickup at a specific address, Schedule a Pick
 var usps USPS
 usps.Username = ""
 
-var pickup PickUp
+var pickup PickUpRequest
 pickup.FirmName = "ABC Corp."
 pickup.SuiteOrApt = "Suite 777"
 pickup.Address2 = "1390 Market Street"
@@ -129,9 +129,52 @@ output := usps.PickupAvailability(pickup)
 
 ##### Package Pickup Change
 
+```go
+var usps USPS
+usps.Username = ""
+
+var pickup PickupChangeRequest
+pickup.FirstName = "John"
+pickup.LastName = "Doe"
+pickup.FirmName = ""
+pickup.SuiteOrApt = ""
+pickup.Address2 = "1390 Market Street"
+pickup.Urbanization = ""
+pickup.City = "Houston"
+pickup.State = "HX"
+pickup.ZIP5 = ""
+pickup.ZIP4 = ""
+pickup.Phone = "(555) 555-1234"
+pickup.Extension = ""
+pickup.Package.ServiceType = "PriorityMail"
+pickup.Package.Count = "1"
+pickup.EstimatedWeight = "14"
+pickup.PackageLocation = "Front Door"
+pickup.SpecialInstructions = ""
+pickup.ConfirmationNumber = "WTC123456789"
+
+output := usps.PickupChange(pickup)
+```
+
 ##### Package Pickup Inquiry
 
-##### 
+```go
+var usps USPS
+usps.Username = ""
+
+var pickup PickUpInquiryRequest
+pickup.FirmName = ""
+pickup.SuiteOrApt = ""
+pickup.Address2 = "1390 Market Street"
+pickup.Urbanization = ""
+pickup.City = ""
+pickup.State = ""
+pickup.ZIP5 = "77058"
+pickup.ZIP4 = ""
+pickup.ConfirmationNumber = "WTC123456789"
+
+output := usps.PickupInquiry(pickup)
+```
 
 ## Coming soon
 

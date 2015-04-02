@@ -1,6 +1,7 @@
 # usps-go
 
 [![GoDoc](https://godoc.org/github.com/aureum/usps-go?status.svg)](https://godoc.org/github.com/aureum/usps-go)
+[![Circle CI](https://circleci.com/gh/aureum/usps-go/tree/master.svg?style=svg)](https://circleci.com/gh/aureum/usps-go/tree/master)
 
 A wrapper ontop of the USPS API.
 

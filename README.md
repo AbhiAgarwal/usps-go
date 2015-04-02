@@ -179,5 +179,3 @@ Get estimates on delivery standards between 3-digit ZIP Codes™ for Standard Po
 
 #### Package Services Service Standards
 
-=======
->>>>>>> 4e3fa84f87b7fa6de07227238f0c42efa31eaede

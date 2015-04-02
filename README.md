@@ -97,7 +97,6 @@ usps.Username = ""
 
 output := usps.TrackPackage("")
 ```
-<<<<<<< HEAD
 
 ### Package Pickup
 

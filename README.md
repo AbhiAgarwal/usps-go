@@ -39,7 +39,7 @@ Save time and money by reducing shipping errors due to improper address entry. T
 var usps USPS
 usps.Username = ""
 
-var address Address
+var address USPS.Address
 address.Address2 = "6406 Ivy Lane"
 address.City = "Greenbelt"
 address.State = "MD"
@@ -55,7 +55,7 @@ Never get another ZIP Code wrong again with the ZIP Code Lookup tool. Find match
 var usps USPS
 usps.Username = ""
 
-var address Address
+var address USPS.Address
 address.Address2 = "6406 Ivy Lane"
 address.City = "Greenbelt"
 address.State = "MD"
@@ -71,7 +71,7 @@ Don’t waste time searching for a city or state; use a ZIP Code to get accurate
 var usps USPS
 usps.Username = ""
 
-var address ZipCode
+var address USPS.ZipCode
 address.Zip5 = "90210"
 
 output := usps.CityStateLookup(address)
@@ -114,7 +114,7 @@ Check the availability for Package Pickup at a specific address, Schedule a Pick
 var usps USPS
 usps.Username = ""
 
-var pickup PickUpRequest
+var pickup USPS.PickUpRequest
 pickup.FirmName = "ABC Corp."
 pickup.SuiteOrApt = "Suite 777"
 pickup.Address2 = "1390 Market Street"
@@ -133,7 +133,7 @@ output := usps.PickupAvailability(pickup)
 var usps USPS
 usps.Username = ""
 
-var pickup PickupChangeRequest
+var pickup USPS.PickupChangeRequest
 pickup.FirstName = "John"
 pickup.LastName = "Doe"
 pickup.FirmName = ""
@@ -162,7 +162,7 @@ output := usps.PickupChange(pickup)
 var usps USPS
 usps.Username = ""
 
-var pickup PickUpInquiryRequest
+var pickup USPS.PickUpInquiryRequest
 pickup.FirmName = ""
 pickup.SuiteOrApt = ""
 pickup.Address2 = "1390 Market Street"

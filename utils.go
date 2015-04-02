@@ -11,8 +11,15 @@ func URLEncode(urlToEncode string) string {
 	return url.QueryEscape(urlToEncode)
 }
 
-func GetRequest(requestURL string) []byte {
-	currentURL := base + requestURL
+func (U *USPS) GetRequest(requestURL string) []byte {
+	currentURL := ""
+	if U.Production {
+		currentURL += prodbase
+	} else {
+		currentURL += devbase
+	}
+	currentURL += requestURL
+
 	resp, err := http.Get(currentURL)
 	if err != nil {
 		fmt.Println(err)

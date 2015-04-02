@@ -15,6 +15,10 @@ type TrackResponse struct {
 
 func (U *USPS) TrackPackage(trackingID string) TrackResponse {
 	result := TrackResponse{}
+	if U.Username == "" {
+		fmt.Println("Username is missing")
+		return result
+	}
 
 	var requestURL bytes.Buffer
 	requestURL.WriteString("TrackV2&XML=")
@@ -23,7 +27,7 @@ func (U *USPS) TrackPackage(trackingID string) TrackResponse {
 	urlToEncode += "</TrackRequest>"
 	requestURL.WriteString(URLEncode(urlToEncode))
 
-	body := GetRequest(requestURL.String())
+	body := U.GetRequest(requestURL.String())
 	if body == nil {
 		return result
 	}

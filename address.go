@@ -52,6 +52,10 @@ type CityStateLookupResponse struct {
 
 func (U *USPS) AddressVerification(address Address) AddressValidateResponse {
 	result := AddressValidateResponse{}
+	if U.Username == "" {
+		fmt.Println("Username is missing")
+		return result
+	}
 
 	xmlOut, err := xml.Marshal(address)
 	if err != nil {
@@ -66,7 +70,7 @@ func (U *USPS) AddressVerification(address Address) AddressValidateResponse {
 	urlToEncode += "</AddressValidateRequest>"
 	requestURL.WriteString(URLEncode(urlToEncode))
 
-	body := GetRequest(requestURL.String())
+	body := U.GetRequest(requestURL.String())
 	if body == nil {
 		return result
 	}
@@ -83,6 +87,10 @@ func (U *USPS) AddressVerification(address Address) AddressValidateResponse {
 
 func (U *USPS) ZipCodeLookup(address Address) ZipCodeLookupResponse {
 	result := ZipCodeLookupResponse{}
+	if U.Username == "" {
+		fmt.Println("Username is missing")
+		return result
+	}
 
 	xmlOut, err := xml.Marshal(address)
 	if err != nil {
@@ -97,7 +105,7 @@ func (U *USPS) ZipCodeLookup(address Address) ZipCodeLookupResponse {
 	urlToEncode += "</ZipCodeLookupRequest>"
 	requestURL.WriteString(URLEncode(urlToEncode))
 
-	body := GetRequest(requestURL.String())
+	body := U.GetRequest(requestURL.String())
 	if body == nil {
 		return result
 	}
@@ -114,6 +122,10 @@ func (U *USPS) ZipCodeLookup(address Address) ZipCodeLookupResponse {
 
 func (U *USPS) CityStateLookup(zipcode ZipCode) CityStateLookupResponse {
 	result := CityStateLookupResponse{}
+	if U.Username == "" {
+		fmt.Println("Username is missing")
+		return result
+	}
 
 	xmlOut, err := xml.Marshal(zipcode)
 	if err != nil {
@@ -128,7 +140,7 @@ func (U *USPS) CityStateLookup(zipcode ZipCode) CityStateLookupResponse {
 	urlToEncode += "</CityStateLookupRequest>"
 	requestURL.WriteString(URLEncode(urlToEncode))
 
-	body := GetRequest(requestURL.String())
+	body := U.GetRequest(requestURL.String())
 	if body == nil {
 		return result
 	}

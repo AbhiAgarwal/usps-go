@@ -1,10 +1,13 @@
 package usps
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestAddressVerification(t *testing.T) {
 	var usps USPS
-	usps.Username = ""
+	usps.Username = os.Getenv("USPSUsername")
 
 	var address Address
 	address.Address2 = "6406 Ivy Lane"
@@ -19,7 +22,7 @@ func TestAddressVerification(t *testing.T) {
 
 func TestZipCodeLookup(t *testing.T) {
 	var usps USPS
-	usps.Username = ""
+	usps.Username = os.Getenv("USPSUsername")
 
 	var address Address
 	address.Address2 = "6406 Ivy Lane"
@@ -34,7 +37,7 @@ func TestZipCodeLookup(t *testing.T) {
 
 func TestCityStateLookup(t *testing.T) {
 	var usps USPS
-	usps.Username = ""
+	usps.Username = os.Getenv("USPSUsername")
 
 	var address ZipCode
 	address.Zip5 = "90210"

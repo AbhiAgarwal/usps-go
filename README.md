@@ -27,7 +27,7 @@ usps.Password = ""
 
 ### Address Information APIs
 
-The descriptions are from [here](https://www.usps.com/business/web-tools-apis/address-information.htm).
+The descriptions are from [here](https://www.usps.com/business/web-tools-apis/address-information-api.htm).
 
 The access level for this API doesn't require a password, but only requires a username to be set.
 
